@@ -1,0 +1,21 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "Clever API bridge to redux",
+  "main": "dist/api.bundle.js",
+  "scripts": {
+    "build": "webpack -c"
+  },
+  "author": "= <=>",
+  "license": "ISC",
+  "dependencies": {
+    "j": "github:kemptone/j",
+    "underscore": "^1.8.3",
+    "cookie-dough": "^0.1.0",
+    "fetch-ponyfill": "^4.0.0"
+  },
+  "devDependencies": {
+    "webpack": "^1.13.1",
+    "webpack-cli": "^3.3.12"
+  }
+}
