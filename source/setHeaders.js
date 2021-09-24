@@ -9,7 +9,7 @@ export default function setHeaders (settings) {
 
   const { serverRequest } = settings
     , cookie = serverRequest ? new CookieDough(serverRequest) : CookieDough()
-    , authToken = cookie.get(SETTINGS.COOKIE_AUTHORIZATION) || 'undefined'
+    , authToken = cookie.all() ? cookie.get(SETTINGS.COOKIE_AUTHORIZATION) || 'undefined' : undefined
     , Authorization = `Bearer ${authToken}`
     , baseHeaders = { Authorization }
 
