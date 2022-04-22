@@ -273,10 +273,8 @@ module.exports =
 	          dispatch && dispatch(_extends({}, outputExtras, (_extends5 = { type: settings._type() + _settings2.default.REJECTED
 	          }, _defineProperty(_extends5, _settings2.default.PENDING, false), _defineProperty(_extends5, 'apiPath', settings._type()), _defineProperty(_extends5, _settings2.default.API_ERROR, true), _defineProperty(_extends5, 'status', _settings2.default.API_ERROR), _extends5)));
 	
-	          if (onError) onError(error_baggage);
-	
-	          // most likely logs you out
-	          if (_settings2.default.DEFAULT_ON_ERROR && status === 401) _settings2.default.DEFAULT_ON_ERROR(error_baggage);
+	          if (onError) onError(error_baggage);else if (_settings2.default.DEFAULT_ON_ERROR && status === 401) // most likely logs you out
+	            _settings2.default.DEFAULT_ON_ERROR(error_baggage);
 	
 	          return Promise.reject(error_baggage);
 	        });
@@ -626,7 +624,7 @@ module.exports =
 	function setHeaders(settings) {
 	  var serverRequest = settings.serverRequest,
 	      cookie = serverRequest ? new _cookieDough2.default(serverRequest) : (0, _cookieDough2.default)(),
-	      authToken = cookie.get(_settings2.default.COOKIE_AUTHORIZATION) || 'undefined',
+	      authToken = cookie.all() ? cookie.get(_settings2.default.COOKIE_AUTHORIZATION) || 'undefined' : undefined,
 	      Authorization = 'Bearer ' + authToken,
 	      baseHeaders = { Authorization: Authorization };
 	
