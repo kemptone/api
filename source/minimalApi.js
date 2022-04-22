@@ -200,9 +200,7 @@ const minimalApi = (set, global={}) => (dispatch, getState) => {
 
           if (onError)
             onError(error_baggage)
-
-          // most likely logs you out
-          if (SETTINGS.DEFAULT_ON_ERROR && status === 401)
+          else if (SETTINGS.DEFAULT_ON_ERROR && status === 401) // most likely logs you out
             SETTINGS.DEFAULT_ON_ERROR(error_baggage)
 
           return Promise.reject(error_baggage)
